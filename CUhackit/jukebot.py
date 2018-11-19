@@ -3,14 +3,17 @@ import sys
 import spotipy.util as util
 import discord
 import requests
-TOKEN = 'NTAwNjY3NzU2NzUzMDU5ODQ5.DqOLTA.w6CuBzCPmBHJI2KrOEhyOHaK_5E' 
+
+import Config
+TOKEN = Config.DISCORD_TOKEN
+token = Config.get_spotify_token()
+
 client = discord.Client()
 with open("cache.dat", "w") as f:
 	f.write(" ")
 
 @client.event
 async def on_message(message):
-	token = util.prompt_for_user_token('benwilliams193','user-read-private playlist-modify-public',client_id='ef8f0c90eaa6411191ee56607f82d6de',client_secret='7910c286bb054c7ead0d61b20e77454c',redirect_uri='https://localhost:8000')
 	spotify = spotipy.Spotify(auth = token)
 	# we do not want the bot to reply to itself
 	if message.author == client.user:
@@ -23,8 +26,8 @@ async def on_message(message):
 				info = "Data :"
 				for line in f:
 					info += line
-				await client.send_message(message.channel, info) 
-				
+				await client.send_message(message.channel, info)
+
 	elif len(message.content) > 0:
 		input = message.content.split(";")
 		try:
