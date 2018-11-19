@@ -7,7 +7,7 @@ import requests
 import Config
 TOKEN = Config.DISCORD_TOKEN
 token = Config.get_spotify_token()
-
+playlist_id = Config.PLAYLIST_ID
 client = discord.Client()
 with open("cache.dat", "w") as f:
 	f.write(" ")
@@ -37,7 +37,6 @@ async def on_message(message):
 			print("The Song is: " + str(name))
 			await client.send_message(message.channel, "The Artist is: "+ str(artist) + ",  The Song is: "  + str(name))
 
-		#token = util.prompt_for_user_token('benwilliams193','user-read-private playlist-modify-public',client_id='ef8f0c90eaa6411191ee56607f82d6de',client_secret='7910c286bb054c7ead0d61b20e77454c',redirect_uri='https://localhost:8000')
 
 #artist = 'Big Time Rush'
 #name = 'Til I Forget About You'
