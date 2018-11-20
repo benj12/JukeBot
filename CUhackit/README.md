@@ -3,7 +3,8 @@
 ## Config Object
 - - -
 In order to use JukeBot, you need a Config.py file in a format similar to this:
-```import spotipy.util as util
+```
+import spotipy.util as util
 
 DISCORD_TOKEN = "token"
 PLAYLIST_ID = "token"
