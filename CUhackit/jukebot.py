@@ -9,9 +9,9 @@ import Config
 
 TOKEN = Config.DISCORD_TOKEN
 playlist_id = Config.PLAYLIST_ID
-token = Config.get_spotify_token()
 
 client = discord.Client()
+#token = util.prompt_for_user_token('benwilliams193',scope='user-read-private playlist-modify-public',client_id='ef8f0c90eaa6411191ee56607f82d6de',client_secret='7910c286bb054c7ead0d61b20e77454c',redirect_uri='https://localhost:8000')
 
 with open("cache.dat", "w") as f:
     f.write(" ")
@@ -49,7 +49,8 @@ async def on_message(message):
     if str(message.author) == 'JukeBot#0000':
         if message.content == "!SongData":
             await client.send_message(message.channel, SongData())
-
+    if message.content == "!Yeet":
+        await client.send_message(message.channel, "It's lit fam")
     elif len(message.content) > 0:
         input = message.content.split(";")
         name, artist = input
