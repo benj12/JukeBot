@@ -1,6 +1,6 @@
 import discord
 import Config
-
+import Sp
 class JukeBot(discord.Client):
     def __init__(self):
         discord.Client.__init__(self)
@@ -15,7 +15,7 @@ class JukeBot(discord.Client):
         }
         self.channel = None
         self.help_str = None
-
+        self.sp = Sp.Sp()
     async def on_ready(self):
         print("Logged on as {0}".format(self.user))
 
@@ -30,12 +30,15 @@ class JukeBot(discord.Client):
 
     async def add_song(self, channel, message):
         song, artist = message.split(';')
+        self.sp.search(artist,song)
         await super().send_message(channel, "Artist:{}\nSong:{}".format(artist,song))
 
     async def help(self, channel, message):
         if self.help_str is None:
             self.help_str = "Available Commands:\n`"
             for key in self.commands.keys():
+                if key == "!AddSong":
+                    self.help_str += "{} {}\n".format(key, "[song name] [artist]")
                 self.help_str += "{}\n".format(key)
         await super().send_message(channel, self.help_str+'`')
 
@@ -43,5 +46,7 @@ class JukeBot(discord.Client):
         pass
 
 if __name__ == "__main__":
+
     client = JukeBot()
+
     client.run(Config.DISCORD_TOKEN)
