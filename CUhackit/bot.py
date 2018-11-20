@@ -1,6 +1,7 @@
 import discord
 import Config
 import Sp
+
 class JukeBot(discord.Client):
     def __init__(self):
         discord.Client.__init__(self)
