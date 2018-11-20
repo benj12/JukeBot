@@ -11,8 +11,6 @@ TOKEN = Config.DISCORD_TOKEN
 playlist_id = Config.PLAYLIST_ID
 
 client = discord.Client()
-#token = util.prompt_for_user_token('benwilliams193',scope='user-read-private playlist-modify-public',client_id='ef8f0c90eaa6411191ee56607f82d6de',client_secret='7910c286bb054c7ead0d61b20e77454c',redirect_uri='https://localhost:8000')
-
 with open("cache.dat", "w") as f:
     f.write(" ")
 
