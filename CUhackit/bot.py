@@ -30,24 +30,29 @@ class JukeBot(discord.Client):
         await super().send_message(channel, "Like my father always used to say . . . YEET!")
 
     async def add_song(self, channel, message):
-        song, artist = message.split(';')
-        self.sp.search(artist,song)
-        await super().send_message(channel, "Artist:{}\nSong:{}".format(artist,song))
-
+        if not ';' in message:
+            await super().send_message(channel, "Invalid format! Try adding ; between song and artist!")
+        else:
+            song, artist = message.split(';')
+            try:
+                self.sp.search(artist,song)
+                await super().send_message(channel, "Artist:{}\nSong:{}".format(artist,song))
+            except:
+                await super().send_message(channel, "Song Not Found!")
+    
     async def help(self, channel, message):
         if self.help_str is None:
             self.help_str = "Available Commands:\n`"
             for key in self.commands.keys():
                 if key == "!AddSong":
-                    self.help_str += "{} {}\n".format(key, "[song name] [artist]")
-                self.help_str += "{}\n".format(key)
+                    self.help_str += "{} {}\n".format(key, "[song name];[artist]")
+                else: 
+                    self.help_str += "{}\n".format(key)
         await super().send_message(channel, self.help_str+'`')
 
     async def song_data(self, channel, message):
         pass
 
 if __name__ == "__main__":
-
     client = JukeBot()
-
     client.run(Config.DISCORD_TOKEN)
