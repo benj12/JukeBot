@@ -8,10 +8,10 @@ GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-webhook_url = "https://discordapp.com/api/channels/500661295155249152/messages"
-botToken = "NTAwNjY3NzU2NzUzMDU5ODQ5.DqPSJA.df72b25mJM_uyjfJBfOU3ySZdJM"
+webhook_url = ""
+botToken = ""
 
-webhook = "https://discordapp.com/api/webhooks/500741204481409032/znAR90sCrJhbDn-bBPG3zTgFZfRuL_HV7T_dczLbOzTmQgdX_jb7j0SHW7RtspAgfHxV"
+webhook = ""
 def sendData(data):
 	payload={
 		"username": "JukeBot",
